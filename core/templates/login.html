@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block extrastyle %}
+<style>
+.text-danger{
+    color: red!important;
+}
+button{
+  background-color: #428dfe!important;
+  margin-top: 5px;
+  border-radius: 6px;
+}
+input{
+  background-color: #f5f9ff!important;
+  border-radius: 6px;
+  border: none;
+}
+input::placeholder{
+  color:#3d3d74
+}
+input:focus{
+  border: 1px solid #4255fe!important;
+  transition: border .5s;
+}
+.login-page{ 
+  border-radius: 6px!important;
+}
+</style>
+{% endblock %}
+{% block content %}
+<section class="login-section">
+    <div class="login-page">
+      <div class="form">
+        <h2 class="text-center text-bold fw-1">Login Form</h2>
+        <p class="text-danger">{{form.non_field_errors|default:""}}</p>
+        <form class="login-form" action="" method="post">
+            {% csrf_token %}
+          <input type="text" name="email" placeholder="Email" required />
+          <input type="password" name="password" placeholder="Password" required />
+          <button>login</button>
+        </form>
+      </div>
+    </div>
+    </section>
+{% endblock %}

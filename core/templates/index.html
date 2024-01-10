@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+            <div class="d-sm-flex align-items-center justify-content-between mt-5 py-5">
+                <div>
+                    <h1 class="h1">Auto insurance for your <span class=" span-text">CAR!</span></h1>
+                    <p class="lead my-4">
+                        car insurance quotes from autopremify are just a few clicks away. Find auto insurance coverage options, discounts and a lot other things more
+                    </p>
+                    <a href="{% url 'signup' %}" class="btn btn-primary btn-lg col-3 col-md-6 col-sm-6">Get started</a>
+                    
+                </div>
+                <img class="img d-none d-sm-block" src="{% static 'car image1.jpg' %}" alt="">
+                
+            </div>
+{% endblock %}

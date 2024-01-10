@@ -1,0 +1,46 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Send Feedback</h5>
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="email" class="form-control" placeholder="Name" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label >Subject</label>
+                        <input type="text" class="form-control" placeholder="Subject" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Message</label>
+                      <textarea name="message" id="" class="form-control textarea" required></textarea>
+                      </div>
+                    </div>
+                  </div>
+       
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round" style="background-color: #4255fe!important;">Send Feedback</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}

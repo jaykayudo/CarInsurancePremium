@@ -1,0 +1,55 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+        <div class="row">
+          {% for object in object_list %}
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <a href="{% url 'quote-details' object.id %}" class="box-link">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+
+                  <div class="col-12 col-md-12">
+                    <div class="numbers">
+                      <p class="card-category">{{object.vehicle_make.name}}</p>
+                      <p class="card-title">{{object.vehicle_model.name}}<p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-money"></i>
+                  NGN {{object.quote.price}}
+                </div>
+              </div>
+            </div>
+            </a>
+          </div>
+          {% endfor %}
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <a href="{% url 'quote-create' %}" class="box-link">
+            <div class="card card-stats" style="height: 100%;">
+            
+              <div class="card-body doted-box">
+                <div class="circle-orb">
+                    <i class="nc-icon nc-simple-add"></i>
+                </div>
+                <h5 class="text-center">Add Quote</h5>
+              </div>
+            
+            </div>
+            </a>
+          </div>
+         
+        </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <div class="container-fluid">
+          <div class="row">
+           
+          </div>
+        </div>
+      </footer>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+        <div class="row">
+            {% for object in object_list %}
+            <div class="col-md-12">
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="subject" style="display: flex; justify-content: space-between;">
+                            <h5>{{object.subject}}</h5>
+                            <span>{{object.date_created}}</span>
+                        </div>
+                        <div class="message">
+                            {{object.message}}
+                        </div>
+                   
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

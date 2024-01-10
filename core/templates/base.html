@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+    {% block extrastyle %}{% endblock %}
+</head>
+<body>
+    <nav class="nav navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <div class="container my-3 d-sm-flex align-items-between">
+            <a href="#" class="navbar-brand text-capitalize">auto<span class="span-text">premify</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav text-capitalize ms-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'index' %}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#pricing" class="nav-link">pricing</a>
+                    </li>
+                </ul>
+            </div>
+            <div class=" d-flex justify-content-between nav-btn">
+                <a href="{% url 'login' %}" class="sign-in btn btn-outline-primary mx-4 lead">Sign in</a>
+                <a href="{% url 'signup' %}" class="sign-up btn btn-primary lead">Sign up</a>
+            </div>
+        </div>
+        
+    </nav>
+
+    <section class=" main bg-light text-dark p-5 p-lg-0 pt-lg-5  text-sm-start mt-3">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </section>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    {% block extrascript %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card card-user">
+              <div class="card-body">
+                <h2 class="text-center">Welcome to Autopremify, {{request.user.profile.firstname}} {{request.user.profile.lastname}}!</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}

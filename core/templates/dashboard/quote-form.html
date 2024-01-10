@@ -1,0 +1,109 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Add Quote</h5>
+              </div>
+              <div class="card-body">
+                <form method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="user" value="{{request.user.id}}">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label >Vehicle Make</label>
+                        <select name="vehicle_make" class="form-control" id="vehicleMake" required>
+                          <option value="">Select a Vehicle Make</option>
+                              {% for id, x in form.fields.vehicle_make.choices %}
+                                <option {% if form.vehicle_make.value == id %}selected{% endif %} value="{{id}}">{{x}}</option>
+                            {% endfor %}
+                        </select>
+                        {% if form.vehicle_make.errors %}
+                            <span class="error-msg">{{form.vehicle_make.errors}}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Vehicle Model</label>
+                        <select name="vehicle_model" class="form-control" id="vehicleModel" required>
+                          <option value="">Select a Vehicle Make First</option>
+                        </select>
+                        {% if form.vehicle_model.errors %}
+                            <span class="error-msg">{{form.vehicle_model.errors}}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Vehicle Year</label>
+                        <input type="number" min="1900" max="2024" name="vehicle_year" class="form-control" placeholder="Vehicle Year" required>
+                        {% if form.vehicle_year.errors %}
+                            <span class="error-msg">{{form.vehicle_year.errors}}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Coverage</label>
+                        <select name="coverage" id="" class="form-control" required>
+                            <option value="basic">Basic</option>
+                            <option value="comprehensive">Comprehensive</option>
+                            {% if form.coverage.errors %}
+                            <span class="error-msg">{{form.coverage.errors}}</span>
+                            {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Vehicle Identification Number</label>
+                        <input type="number" name="vehicle_identification_number" class="form-control" placeholder="Vehicle Identification Number">
+                        {% if form.vehicle_identification_number.errors %}
+                            <span class="error-msg">{{form.vehicle_identification_number.errors}}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                 
+                  </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round" style="background-color: #4255fe!important;">Generate Quote</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+{% endblock %}
+{% block extrascript %}
+<script>
+  const vehicleMake = document.getElementById("vehicleMake")
+  const vehicleModel = document.getElementById("vehicleModel")
+  vehicleMake.onchange = (e)=>{
+    const value = e.target.value
+    console.log(value) 
+    if(value != ""){
+      fetch(`{% url 'get-vehicle-models' %}?id=${value}`).then((response)=>{
+        return response.json()
+      }).then((res)=>{
+        vehicleModel.innerHTML = `<option value="">Select a Vehicle Model</option>`
+        let models = res.models
+        for(let item = 0; item < models.length; item++){
+          vehicleModel.innerHTML += `<option value="${models[item][1]}">${models[item][0]}</option>`
+        }
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }
+    
+  }
+</script>
+{% endblock %}
